@@ -4,11 +4,6 @@ from io import BytesIO
 
 import qrcode
 from pelican import signals
-from qrcode.image.styledpil import StyledPilImage
-from qrcode.image.styles.moduledrawers.pil import RoundedModuleDrawer
-
-# from qrcode.image.styles.colormasks import RadialGradiantColorMask
-
 
 
 logger = logging.getLogger(__name__)
@@ -34,7 +29,7 @@ def addQRCodePage(page_generator, content):
         qr.add_data(url)
         qr.make(fit=True)
         img = qr.make_image(
-            image_factory=StyledPilImage, module_drawer=RoundedModuleDrawer()
+            fill_color="black", back_color="white"
         )
 
         buffer = BytesIO()
